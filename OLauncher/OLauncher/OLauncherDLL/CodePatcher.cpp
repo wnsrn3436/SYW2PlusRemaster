@@ -20,6 +20,12 @@ void CodePatcher::Push(BYTE code)
 	Codes->push_back(code);
 }
 
+void CodePatcher::Push(BYTE codes[], SIZE_T size)
+{
+	for (int i = 0; i < (int)size; i++)
+		Codes->push_back(codes[i]);
+}
+
 void CodePatcher::Push(SIZE_T size, BYTE firstCode, ...)
 {
 	Codes->push_back(firstCode);

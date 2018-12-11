@@ -1,6 +1,6 @@
 #pragma once
 
-//https://elixir.bootlin.com/linux/latest/source/arch/x86/lib/x86-opcode-map.txt
+// https://elixir.bootlin.com/linux/latest/source/arch/x86/lib/x86-opcode-map.txt
 typedef enum _IACODE
 {
 	_00_ADD,
@@ -217,7 +217,7 @@ typedef enum _IACODE
 	_D3_GRP2,
 	_D4_AAM,
 	_D5_AAD,
-	_D6_UNKNOWN1,
+	_D6_UNKNOWN,
 	_D7_XLAT_XLATB,
 	_D8_ESC,
 	_D9_ESC,
@@ -244,7 +244,7 @@ typedef enum _IACODE
 	_EE_OUT,
 	_EF_OUT,
 	_F0_LOCK,
-	_F1_UNKNOWN2,
+	_F1_UNKNOWN,
 	_F2_REPNE,
 	_F3_REP_REPE,
 	_F4_HLT,
