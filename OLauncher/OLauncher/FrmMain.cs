@@ -8,32 +8,33 @@ namespace OLauncher
     public partial class FrmMain : Form
     {
         string GameDirectory = @"D:\Games\SYW2Plus\";
-        string GameName = @"syw2plus.exe";
-        string ConfigName = @"config.hq";
+        string GameFileName = @"syw2plus.exe";
 
-        string ProcessesName = @"syw2plus";
-        string DllName = @"OLauncherDLL.dll";
+        string ConfigFileName = @"config.hq";
+        int WaitConfigInterval = 1000;
 
-        int WaitConfigTime = 1000;
+        string GameProcessName = @"syw2plus";
+        string LauncherDllName = @"OLauncherDLL.dll";
 
         public FrmMain()
         {
             InitializeComponent();
         }
 
-        void FrmMain_Load(object sender, System.EventArgs e)
+        void BtnStart_Click(object sender, System.EventArgs e)
         {
-            File.Delete(GameDirectory + ConfigName);
-
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.WorkingDirectory = GameDirectory;
-            info.FileName = GameName;
+            ProcessStartInfo info = new ProcessStartInfo()
+            {
+                WorkingDirectory = GameDirectory,
+                FileName = GameFileName
+            };
             using (Process process = Process.Start(info)) { }
 
-            while (!File.Exists(GameDirectory + ConfigName))
-                Task.Delay(WaitConfigTime).Wait();
+            File.Delete(GameDirectory + ConfigFileName);
+            while (!File.Exists(GameDirectory + ConfigFileName))
+                Task.Delay(WaitConfigInterval).Wait();
 
-            Injector injector = new Injector(ProcessesName, DllName);
+            Injector injector = new Injector(GameProcessName, LauncherDllName);
             injector.Inject();
         }
     }

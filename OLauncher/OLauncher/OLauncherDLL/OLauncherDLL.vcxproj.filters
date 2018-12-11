@@ -13,27 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\Class">
+      <UniqueIdentifier>{0a4d1e4f-408a-4a21-8880-2638f61d6ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Enum">
+      <UniqueIdentifier>{b79370c7-c456-4817-b712-385a0cbcd266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Class">
+      <UniqueIdentifier>{3b85988a-5b49-45e4-9f26-72a75be6891b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="Program.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="StdAfx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OLauncherDLL.h">
+    <ClInclude Include="TargetVer.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CodePatcher.hpp">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>헤더 파일\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="IACode.h">
+      <Filter>헤더 파일\Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="DllMain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OLauncherDLL.cpp">
+    <ClCompile Include="Program.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="dllmain.cpp">
+    <ClCompile Include="StdAfx.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CodePatcher.cpp">
+      <Filter>소스 파일\Class</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

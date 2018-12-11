@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+﻿#include "StdAfx.h"
 
 extern "C" __declspec(dllexport) bool WINAPI DllMain(HINSTANCE hInstDll, DWORD fdwReason, LPVOID lpvReserved)
 {
@@ -7,7 +7,7 @@ extern "C" __declspec(dllexport) bool WINAPI DllMain(HINSTANCE hInstDll, DWORD f
 	switch (fdwReason)
 	{
 		case DLL_PROCESS_ATTACH:
-			hThread = CreateThread(NULL, 0, Awake, NULL, 0, NULL);
+			hThread = CreateThread(NULL, 0, ThreadProc, NULL, 0, NULL);
 			CloseHandle(hThread);
 			break;
 

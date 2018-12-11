@@ -39,18 +39,18 @@ namespace OLauncher
         const string Kernel32 = "kernel32.dll";
         const string Kernel32Api = "LoadLibraryA";
 
-        string ProcessesName;
+        string ProcessName;
         string DllName;
 
-        public Injector(string processesName, string dllName)
+        public Injector(string processName, string dllName)
         {
-            ProcessesName = processesName;
+            ProcessName = processName;
             DllName = dllName;
         }
 
         public void Inject()
         {
-            Process targetProcess = Process.GetProcessesByName(ProcessesName)[0];
+            Process targetProcess = Process.GetProcessesByName(ProcessName)[0];
             IntPtr procHandle = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_WRITE | PROCESS_VM_READ, false, targetProcess.Id);
             IntPtr loadLibraryAddr = GetProcAddress(GetModuleHandle(Kernel32), Kernel32Api);
 
