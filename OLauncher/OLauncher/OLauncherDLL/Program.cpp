@@ -13,4 +13,5 @@ void Awake()
 	LoadScene(SCENE::UNKNOWN_11);
 
 	UseMapEditor(true);
+	UsePlayerStart(false);
 }

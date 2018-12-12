@@ -1,12 +1,12 @@
 #include "StdAfx.h"
 
-int CalculateJmp(SIZE_T opSize, int startAddress, int destAddress)
+int CalculateAddress(SIZE_T opSize, int startAddress, int destAddress)
 {
-	return destAddress - startAddress - opSize - sizeof(int);
+	return destAddress - startAddress - opSize;
 }
 
-void CalculateJmp(SIZE_T opSize, int startAddress, int destAddress, BYTE *result)
+void CalculateAddress(SIZE_T opSize, int startAddress, int destAddress, BYTE *result)
 {
-	int jmpAddress = CalculateJmp(opSize, startAddress, destAddress);
-	memcpy(result, &jmpAddress, sizeof(int));
+	int address = CalculateAddress(opSize, startAddress, destAddress);
+	memcpy(result, &address, sizeof(int));
 }
