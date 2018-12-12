@@ -1,4 +1,4 @@
 #pragma once
 
-DWORD WINAPI ThreadProc(LPVOID iParam);
+DWORD WINAPI ThreadProc(LPVOID lParam);
 void Awake();

@@ -1,6 +1,6 @@
 ﻿#include "StdAfx.h"
 
-DWORD WINAPI ThreadProc(LPVOID iParam)
+DWORD WINAPI ThreadProc(LPVOID lParam)
 {
 	Awake();
 	return 0;
@@ -14,4 +14,5 @@ void Awake()
 
 	UseMapEditor(true);
 	UsePlayerStart(false);
+	UseMapUnitLoad(true);
 }

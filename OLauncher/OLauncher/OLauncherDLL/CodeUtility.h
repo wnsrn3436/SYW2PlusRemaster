@@ -1,4 +1,6 @@
 #pragma once
 
-int CalculateAddress(SIZE_T opSize, int startAddress, int destAddress);
-void CalculateAddress(SIZE_T opSize, int startAddress, int destAddress, BYTE *result);
+DWORD CalculateAddress(SIZE_T opSize, DWORD startAddress, DWORD destAddress);
+void CalculateAddress(SIZE_T opSize, DWORD startAddress, DWORD destAddress, BYTE *result);
+void CalculateAddress(SIZE_T opSize, DWORD startAddress, DWORD destAddress, BYTE *result, SIZE_T size);
+void CopyCode(DWORD startAddress, DWORD untilAddress, BYTE *dest);
