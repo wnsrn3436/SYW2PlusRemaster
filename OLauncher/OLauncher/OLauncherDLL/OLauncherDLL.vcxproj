@@ -149,7 +149,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CodeUtility.h" />
     <ClInclude Include="IACode.h" />
     <ClInclude Include="CodePatcher.hpp" />
     <ClInclude Include="IACode2.h" />
@@ -160,7 +159,6 @@
     <ClInclude Include="TargetVer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CodeUtility.cpp" />
     <ClCompile Include="CodePatcher.cpp" />
     <ClCompile Include="DllMain.cpp" />
     <ClCompile Include="LauncherUtility.cpp" />

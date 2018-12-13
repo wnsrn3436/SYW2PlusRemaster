@@ -1,5 +1,11 @@
 ﻿#include "StdAfx.h"
 
+DWORD WINAPI ThreadProc(LPVOID lParam)
+{
+	Awake();
+	return 0;
+}
+
 extern "C" __declspec(dllexport) bool WINAPI DllMain(HINSTANCE hInstDll, DWORD fdwReason, LPVOID lpvReserved)
 {
 	HANDLE hThread;

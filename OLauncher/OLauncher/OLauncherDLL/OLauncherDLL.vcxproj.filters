@@ -42,9 +42,6 @@
     <ClInclude Include="IACode.h">
       <Filter>헤더 파일\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="CodeUtility.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="LauncherUtility.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -64,9 +61,6 @@
     </ClCompile>
     <ClCompile Include="CodePatcher.cpp">
       <Filter>소스 파일\Class</Filter>
-    </ClCompile>
-    <ClCompile Include="CodeUtility.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="LauncherUtility.cpp">
       <Filter>소스 파일</Filter>

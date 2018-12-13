@@ -1,11 +1,5 @@
 ﻿#include "StdAfx.h"
 
-DWORD WINAPI ThreadProc(LPVOID lParam)
-{
-	Awake();
-	return 0;
-}
-
 void Awake()
 {
 	UseMessageBox(false);
