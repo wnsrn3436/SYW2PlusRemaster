@@ -14,6 +14,7 @@ void LoadConfigsXml(string xmlPath)
 	document.LoadFile(xmlPath.c_str());
 
 	XMLElement *element = document.RootElement();
+	element = find_element(element, "Category[@used='1']");
 
 	UseMessageBox(find_element(element, "Config[@name='UseMessageBox']")->IntText());
 	HasPermission(find_element(element, "Config[@name='HasPermission']")->IntText());
