@@ -107,3 +107,31 @@ void UseMapUnitLoad(bool useMapUnitLoad)
 		Patcher.WritePatch(patchAddress);
 	}
 }
+
+void UseLimitedMapSelect(bool useLimitedMapSelect)
+{
+	Patcher.Clear();
+	Patcher.Push(useLimitedMapSelect ? IACODE::_7D_JNL_JGE : IACODE::_EB_JMP_SHORT);
+	Patcher.WritePatch(0x4CB9FD);
+}
+
+void SetButtonSystem(BYTE system)
+{
+	Patcher.Clear();
+	Patcher.Push(system);
+	Patcher.WritePatch(0x669590);
+}
+
+void SetGameSpeed(BYTE speed)
+{
+	// 멀티에서도 속도 적용
+	Patcher.Clear();
+	Patcher.Push(2, IACODE::_90_NOP, IACODE::_90_NOP);
+	Patcher.WritePatch(0x4165DB);
+	Patcher.WritePatch(0x4165E3);
+
+	// 속도 패치
+	Patcher.Clear();
+	Patcher.Push(speed);
+	Patcher.WritePatch(0x6695A4);
+}
