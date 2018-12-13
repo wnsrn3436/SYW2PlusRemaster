@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DllMain.h" />
     <ClInclude Include="IACode.h" />
     <ClInclude Include="CodePatcher.hpp" />
     <ClInclude Include="IACode2.h" />
@@ -157,6 +158,9 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="TargetVer.h" />
+    <ClInclude Include="TinyXml2.h" />
+    <ClInclude Include="TinyXml2CX.h" />
+    <ClInclude Include="TinyXml2EX.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CodePatcher.cpp" />
@@ -169,6 +173,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TinyXml2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

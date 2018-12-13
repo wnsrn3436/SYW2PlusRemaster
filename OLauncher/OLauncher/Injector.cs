@@ -50,15 +50,20 @@ namespace OLauncher
 
         public void Inject()
         {
-            Process targetProcess = Process.GetProcessesByName(ProcessName)[0];
-            IntPtr procHandle = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_WRITE | PROCESS_VM_READ, false, targetProcess.Id);
-            IntPtr loadLibraryAddr = GetProcAddress(GetModuleHandle(Kernel32), Kernel32Api);
+            Process[] targets = Process.GetProcessesByName(ProcessName);
 
-            string dllPath = Environment.CurrentDirectory + Path.DirectorySeparatorChar + DllName;
-            IntPtr allocMemAddress = VirtualAllocEx(procHandle, IntPtr.Zero, (uint)((dllPath.Length + 1) * Marshal.SizeOf(typeof(char))), MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+            if (targets.Length > 0)
+            {
+                Process targetProcess = targets[0];
+                IntPtr procHandle = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_WRITE | PROCESS_VM_READ, false, targetProcess.Id);
+                IntPtr loadLibraryAddr = GetProcAddress(GetModuleHandle(Kernel32), Kernel32Api);
 
-            WriteProcessMemory(procHandle, allocMemAddress, Encoding.Default.GetBytes(dllPath), (uint)((dllPath.Length + 1) * Marshal.SizeOf(typeof(char))), out UIntPtr bytesWritten);
-            CreateRemoteThread(procHandle, IntPtr.Zero, 0, loadLibraryAddr, allocMemAddress, 0, IntPtr.Zero);
+                string dllPath = Environment.CurrentDirectory + Path.DirectorySeparatorChar + DllName;
+                IntPtr allocMemAddress = VirtualAllocEx(procHandle, IntPtr.Zero, (uint)((dllPath.Length + 1) * Marshal.SizeOf(typeof(char))), MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+
+                WriteProcessMemory(procHandle, allocMemAddress, Encoding.Default.GetBytes(dllPath), (uint)((dllPath.Length + 1) * Marshal.SizeOf(typeof(char))), out UIntPtr bytesWritten);
+                CreateRemoteThread(procHandle, IntPtr.Zero, 0, loadLibraryAddr, allocMemAddress, 0, IntPtr.Zero);
+            }
         }
     }
 }

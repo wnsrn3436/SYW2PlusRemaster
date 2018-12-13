@@ -52,11 +52,11 @@ void UsePlayerStart(bool usePlayerStart)
 {
 	// 조선건물, 일본건물, 조선/일본일꾼, 명건물, 명일꾼
 	DWORD patchAddress[]{ 0x41F1CF, 0x41F251, 0x41F293, 0x41F2E6, 0x41F328 };
-	int arraySize = sizeof(patchAddress) / sizeof(DWORD);
+	SIZE_T arraySize = _countof(patchAddress);
 
 	if (usePlayerStart)
 	{
-		for (int i = 0; i < arraySize; i++)
+		for (SIZE_T i = 0; i < arraySize; i++)
 		{
 			Patcher.Clear();
 			Patcher.Push(IACODE::_E8_CALL);
@@ -71,7 +71,7 @@ void UsePlayerStart(bool usePlayerStart)
 		for (int i = 0; i < 5; i++)
 			Patcher.Push(IACODE::_90_NOP);
 
-		for (int i = 0; i < arraySize; i++)
+		for (SIZE_T i = 0; i < arraySize; i++)
 			Patcher.WritePatch(patchAddress[i]);
 	}
 }
@@ -124,7 +124,7 @@ void SetButtonSystem(BYTE system)
 
 void SetGameSpeed(BYTE speed)
 {
-	// 멀티에서도 속도 적용
+	// 멀티에서 속도 적용
 	Patcher.Clear();
 	Patcher.Push(2, IACODE::_90_NOP, IACODE::_90_NOP);
 	Patcher.WritePatch(0x4165DB);

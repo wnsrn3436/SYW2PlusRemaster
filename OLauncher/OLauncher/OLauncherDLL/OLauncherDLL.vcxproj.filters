@@ -22,6 +22,12 @@
     <Filter Include="소스 파일\Class">
       <UniqueIdentifier>{3b85988a-5b49-45e4-9f26-72a75be6891b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\TinyXml">
+      <UniqueIdentifier>{087ae40b-013c-474c-b980-6bcf5b9843e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\TinyXml">
+      <UniqueIdentifier>{9fbd3474-9b6f-4bd9-bda0-78fd1eee1659}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h">
@@ -48,6 +54,18 @@
     <ClInclude Include="IACode2.h">
       <Filter>헤더 파일\Enum</Filter>
     </ClInclude>
+    <ClInclude Include="TinyXml2.h">
+      <Filter>헤더 파일\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="DllMain.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXml2CX.h">
+      <Filter>헤더 파일\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXml2EX.h">
+      <Filter>헤더 파일\TinyXml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllMain.cpp">
@@ -64,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="LauncherUtility.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXml2.cpp">
+      <Filter>소스 파일\TinyXml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

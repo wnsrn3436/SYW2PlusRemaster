@@ -23,19 +23,27 @@ namespace OLauncher
 
         void BtnStart_Click(object sender, System.EventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo()
+            if (Process.GetProcessesByName(GameProcessName).Length == 0)
             {
-                WorkingDirectory = GameDirectory,
-                FileName = GameFileName
-            };
-            using (Process process = Process.Start(info)) { }
+                ProcessStartInfo info = new ProcessStartInfo()
+                {
+                    WorkingDirectory = GameDirectory,
+                    FileName = GameFileName
+                };
+                using (Process process = Process.Start(info)) { }
 
-            File.Delete(GameDirectory + ConfigFileName);
-            while (!File.Exists(GameDirectory + ConfigFileName))
-                Task.Delay(WaitConfigInterval).Wait();
+                File.Delete(GameDirectory + ConfigFileName);
+                Task.Run(
+                    () =>
+                    {
+                        while (!File.Exists(GameDirectory + ConfigFileName))
+                            Task.Delay(WaitConfigInterval).Wait();
 
-            Injector injector = new Injector(GameProcessName, LauncherDllName);
-            injector.Inject();
+                        Injector injector = new Injector(GameProcessName, LauncherDllName);
+                        injector.Inject();
+                    }
+                );
+            }
         }
     }
 }
