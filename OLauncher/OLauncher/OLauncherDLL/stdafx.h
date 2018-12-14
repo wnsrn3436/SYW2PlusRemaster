@@ -20,4 +20,5 @@ using namespace tinyxml2::tixml2ex;
 #include "DllMain.h"
 #include "CodePatcher.hpp"
 #include "LauncherUtility.h"
+#include "XmlLoader.h"
 #include "Program.h"

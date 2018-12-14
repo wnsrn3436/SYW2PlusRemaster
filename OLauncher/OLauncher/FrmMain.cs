@@ -8,7 +8,7 @@ namespace OLauncher
 {
     public partial class FrmMain : Form
     {
-        string GameDirectory = @".\";
+        string GameDirectory = @"D:\Games\SYW2Plus\";
         string GameFileName = @"syw2plus.exe";
 
         string ConfigFileName = @"config.hq";

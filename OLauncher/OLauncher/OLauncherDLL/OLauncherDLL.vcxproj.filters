@@ -66,6 +66,9 @@
     <ClInclude Include="TinyXml2EX.h">
       <Filter>헤더 파일\TinyXml</Filter>
     </ClInclude>
+    <ClInclude Include="XmlLoader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllMain.cpp">
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="TinyXml2.cpp">
       <Filter>소스 파일\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlLoader.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

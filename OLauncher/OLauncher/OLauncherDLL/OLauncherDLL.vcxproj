@@ -161,6 +161,7 @@
     <ClInclude Include="TinyXml2.h" />
     <ClInclude Include="TinyXml2CX.h" />
     <ClInclude Include="TinyXml2EX.h" />
+    <ClInclude Include="XmlLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CodePatcher.cpp" />
@@ -174,6 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TinyXml2.cpp" />
+    <ClCompile Include="XmlLoader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
 ﻿#include "StdAfx.h"
 
-void Awake()
+void OnAwake()
 {
 	char dllDirectory[MAX_PATH];
 	GetDllDirectory(dllDirectory, _countof(dllDirectory));
@@ -8,22 +8,7 @@ void Awake()
 	LoadConfigsXml(string(dllDirectory) + string("Configs.xml"));
 }
 
-void LoadConfigsXml(string xmlPath)
+void OnUpdate()
 {
-	XMLDocument document;
-	document.LoadFile(xmlPath.c_str());
 
-	XMLElement *element = document.RootElement();
-	element = find_element(element, "Category[@used='1']");
-
-	UseMessageBox(find_element(element, "Config[@name='UseMessageBox']")->IntText());
-	HasPermission(find_element(element, "Config[@name='HasPermission']")->IntText());
-	SetButtonSystem(find_element(element, "Config[@name='SetButtonSystem']")->IntText());
-	SetGameSpeed(find_element(element, "Config[@name='SetGameSpeed']")->IntText());
-	UseMapEditor(find_element(element, "Config[@name='UseMapEditor']")->IntText());
-	UsePlayerStart(find_element(element, "Config[@name='UsePlayerStart']")->IntText());
-	UseMapUnitLoad(find_element(element, "Config[@name='UseMapUnitLoad']")->IntText());
-	UseLimitedMapSelect(find_element(element, "Config[@name='UseLimitedMapSelect']")->IntText());
-
-	LoadScene(SCENE::UNKNOWN_11);
 }
