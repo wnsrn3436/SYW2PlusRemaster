@@ -1,5 +1,5 @@
 #pragma once
 
-void OnAwake();
+void OnStart();
 void OnUpdate();
 void LoadConfigsXml(string xmlPath);

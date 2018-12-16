@@ -21,6 +21,13 @@ void CodePatcher::Copy(DWORD startAddress, DWORD untilAddress, BYTE *dest)
 	memcpy(dest, (DWORD *)startAddress, untilAddress - startAddress);
 }
 
+DWORD CodePatcher::GetValue(DWORD address)
+{
+	DWORD value;
+	memcpy(&value, (DWORD *)address, 4);
+	return value;
+}
+
 CodePatcher::CodePatcher()
 {
 	Codes = new vector<BYTE>();
@@ -64,6 +71,11 @@ void CodePatcher::Push(SIZE_T size, BYTE firstCode, ...)
 		Codes->push_back(code);
 	}
 	va_end(args);
+}
+
+void CodePatcher::PushCalculate(SIZE_T opSize, DWORD destAddress)
+{
+	PushCalculate(opSize, (DWORD)&(*Codes)[Codes->size() - 1], destAddress);
 }
 
 void CodePatcher::PushCalculate(SIZE_T opSize, DWORD startAddress, DWORD destAddress)

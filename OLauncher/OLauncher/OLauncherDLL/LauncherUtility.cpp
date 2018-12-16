@@ -135,3 +135,8 @@ void SetGameSpeed(BYTE speed)
 	Patcher.Push(speed);
 	Patcher.WritePatch(0x6695A4);
 }
+
+int GetGamePlayTime()
+{
+	return CodePatcher::GetValue(0x97591C);
+}

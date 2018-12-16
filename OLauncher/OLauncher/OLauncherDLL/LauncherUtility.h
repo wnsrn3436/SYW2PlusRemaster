@@ -10,3 +10,5 @@ void UseMapUnitLoad(bool useMapUnitLoad);
 void UseLimitedMapSelect(bool useLimitedMapSelect);
 void SetButtonSystem(BYTE system);
 void SetGameSpeed(BYTE speed);
+
+int GetGamePlayTime();

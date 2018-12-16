@@ -1,6 +1,8 @@
 ﻿#include "StdAfx.h"
 
 bool canAwake = true;
+CodePatcher UpdateCodes;
+
 FARPROC orgMessageBoxA;
 
 extern "C" __declspec(dllexport) bool WINAPI DllMain(HINSTANCE hInstDll, DWORD fdwReason, LPVOID lpvReserved)
@@ -10,17 +12,17 @@ extern "C" __declspec(dllexport) bool WINAPI DllMain(HINSTANCE hInstDll, DWORD f
 	switch (fdwReason)
 	{
 		case DLL_PROCESS_ATTACH:
-			// Hooking
+			// 후킹
 			orgMessageBoxA = GetProcAddress(GetModuleHandle("user32.dll"), "MessageBoxA");
 			HookIAT("user32.dll", orgMessageBoxA, (PROC)OnMessageBoxA);
 
-			// Start Thread
-			hThread = CreateThread(NULL, 0, ThreadProc, NULL, 0, NULL);
+			// OnAwake 호출
+			hThread = CreateThread(NULL, 0, OnAwake, NULL, 0, NULL);
 			CloseHandle(hThread);
 			break;
 
 		case DLL_PROCESS_DETACH:
-			// Release Hooking
+			// 후킹 해제
 			HookIAT("user32.dll", (PROC)OnMessageBoxA, orgMessageBoxA);
 			break;
 
@@ -76,19 +78,47 @@ BOOL WINAPI OnMessageBoxA(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uTy
 	if (canAwake)
 	{
 		canAwake = false;
+
+		// OnBeginUpdate 패치
+		CodePatcher patcher;
+		patcher.Push(IACODE::_E8_CALL);
+		patcher.PushCalculate(5, 0x4232C8, (DWORD)&OnBeginUpdate);
+		patcher.WritePatch(0x4232C8);
+
+		// UpdateCodes로 점프 패치
+		UpdateCodes.Codes->reserve(UPDATE_CODE_SIZE);
+		patcher.Clear();
+		patcher.Push(IACODE::_E9_JMP_NEAR);
+		patcher.PushCalculate(5, 0x4232CD, UpdateCodes.GetAddress(0));
+		patcher.WritePatch(0x4232CD);
+
+		// OnStart 호출
 		UseMessageBox(false);
-		OnAwake();
+		OnStart();
+
 		return false;
 	}
 	else
 		return ((PFMessageBoxA)orgMessageBoxA)(hWnd, lpText, lpCaption, uType);
 }
 
-DWORD WINAPI ThreadProc(LPVOID lParam)
+DWORD WINAPI OnAwake(LPVOID lParam)
 {
 	HasPermission(true);
 	LoadScene(SCENE::UNKNOWN_11);
 	return 0;
+}
+
+void OnBeginUpdate()
+{
+	UpdateCodes.Clear();
+	OnUpdate();
+
+	// 기존 코드 복원
+	UpdateCodes.Push(6, IACODE::_6A_PUSH, 0x00, IACODE::_6A_PUSH, 0x00, IACODE::_6A_PUSH, 0x00);
+	UpdateCodes.Push(4, 0x8D, 0x4C, 0x24, 0x1C);
+	UpdateCodes.Push(IACODE::_E9_JMP_NEAR);
+	UpdateCodes.PushCalculate(5, 0x4232D2);
 }
 
 void GetDllPath(char dest[], SIZE_T size)
